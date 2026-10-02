@@ -1,4 +1,4 @@
-[Uploading README.md…]()<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to main content</aa>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <header class="site-header">
   <div class="container">
@@ -90,4 +90,3 @@
 <script src="main.js"></script>
 </body>
 </html>
-
