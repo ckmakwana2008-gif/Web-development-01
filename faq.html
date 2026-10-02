@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback — StudentHub</title>
+<meta name="description" content="Share your feedback about the StudentHub portal.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">StudentHub</span>
+      <span class="brand-tag">Student Portal</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Log in</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Feedback</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="container">
+    <h1>Share your feedback</h1>
+    <p>Tell us what's working well and what could be improved. Your feedback directly shapes future updates to the portal.</p>
+
+    <div class="panel" style="max-width: 480px;">
+      <form class="form-grid" action="#" method="post" novalidate>
+        <fieldset>
+          <legend>How would you rate your experience?</legend>
+          <div class="radio-group" role="radiogroup" aria-label="Experience rating">
+            <label for="rate-1"><input type="radio" id="rate-1" name="rating" value="1"> 1</label>
+            <label for="rate-2"><input type="radio" id="rate-2" name="rating" value="2"> 2</label>
+            <label for="rate-3"><input type="radio" id="rate-3" name="rating" value="3"> 3</label>
+            <label for="rate-4"><input type="radio" id="rate-4" name="rating" value="4"> 4</label>
+            <label for="rate-5"><input type="radio" id="rate-5" name="rating" value="5"> 5</label>
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="feedback-category">What is this feedback about?</label>
+          <select id="feedback-category" name="category">
+            <option value="usability">Ease of use</option>
+            <option value="content">Content and notices</option>
+            <option value="bug">Something isn't working</option>
+            <option value="suggestion">A new feature idea</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="feedback-details">Your feedback <span class="required-marker" aria-hidden="true">*</span></label>
+          <textarea id="feedback-details" name="details" rows="5" required aria-required="true"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Submit feedback</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

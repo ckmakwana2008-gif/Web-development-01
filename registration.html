@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — StudentHub</title>
+<meta name="description" content="Create a StudentHub account as a student or faculty member.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">StudentHub</span>
+      <span class="brand-tag">Student Portal</span>
+    </a>
+    <div class="header-actions">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button>
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">☰ Menu</button>
+    </div>
+    <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Log in</a></li>
+        <li><a href="register.html" aria-current="page">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Register</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="container">
+    <h1>Create your account</h1>
+    <p>Register with your institute email address. Faculty accounts are verified by an administrator before activation.</p>
+
+    <form class="form-grid form-wide" action="#" method="post" novalidate>
+
+      <fieldset>
+        <legend>Account details</legend>
+
+        <div class="form-row">
+          <div>
+            <label for="full-name">Full name <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="text" id="full-name" name="full-name" autocomplete="name" required aria-required="true">
+          </div>
+
+          <div>
+            <label for="email">Institute email <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" aria-describedby="email-hint">
+            <p class="field-hint" id="email-hint">Use your official @studenthub.edu address.</p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label for="password">Password <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="password" id="password" name="password" autocomplete="new-password" required aria-required="true" aria-describedby="password-hint" minlength="8">
+            <p class="field-hint" id="password-hint">At least 8 characters.</p>
+          </div>
+
+          <div>
+            <label for="confirm-password">Confirm password <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required aria-required="true">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>You are registering as</legend>
+        <div class="radio-group" role="radiogroup" aria-required="true">
+          <label for="role-student">
+            <input type="radio" id="role-student" name="role" value="student" checked>
+            Student
+          </label>
+          <label for="role-faculty">
+            <input type="radio" id="role-faculty" name="role" value="faculty">
+            Faculty
+          </label>
+        </div>
+      </fieldset>
+
+      <div>
+        <label for="enrollment">Enrollment / Employee ID</label>
+        <input type="text" id="enrollment" name="enrollment" autocomplete="off">
+      </div>
+
+      <div class="checkbox-group">
+        <label for="terms">
+          <input type="checkbox" id="terms" name="terms" required aria-required="true">
+          I agree to the terms of use <span class="required-marker" aria-hidden="true">*</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-dark">Create account</button>
+    </form>
+
+    <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+      <p>Questions? <a href="contact.html">Get in touch</a>.</p>
+    </div>
+    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — StudentHub</title>
+<meta name="description" content="Administrator tools for managing users, notices and events.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">StudentHub</span>
+      <span class="brand-tag">Admin Console</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="admin.html" aria-current="page">Admin</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="index.html">Log out</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Admin</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="container">
+    <h1>Admin panel</h1>
+    <p>Manage users, and review notices and events awaiting approval.</p>
+
+    <section aria-labelledby="pending-heading">
+      <h2 id="pending-heading">Pending approvals</h2>
+      <table>
+        <caption>Notices and events awaiting review</caption>
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Submitted by</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Mid-semester exam schedule</th>
+            <td>Prof. R. Sharma</td>
+            <td>Notice</td>
+            <td><a href="#">Review</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Innovate 2026 registration</th>
+            <td>Student Council</td>
+            <td>Event</td>
+            <td><a href="#">Review</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Library hours update</th>
+            <td>Library Desk</td>
+            <td>Notice</td>
+            <td><a href="#">Review</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="users-heading">
+      <h2 id="users-heading">User management</h2>
+      <div class="panel">
+        <p>Search, verify faculty accounts and manage access from the user directory.</p>
+        <form action="#" method="get" role="search">
+          <label for="user-search">Search users</label>
+          <input type="search" id="user-search" name="q" placeholder="Search by name or enrollment ID">
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
+  </div>
+</footer>
+
+</body>
+</html>

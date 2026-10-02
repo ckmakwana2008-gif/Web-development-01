@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — StudentHub</title>
+<meta name="description" content="Get in touch with the StudentHub team.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">StudentHub</span>
+      <span class="brand-tag">Student Portal</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="login.html">Log in</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Contact</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="container">
+    <h1>Contact us</h1>
+    <p>Have a question about the portal? Send us a message and the team will get back to you within two working days.</p>
+
+    <div class="panel" style="max-width: 480px;">
+      <form class="form-grid" action="#" method="post" novalidate>
+        <div>
+          <label for="contact-name">Name <span class="required-marker" aria-hidden="true">*</span></label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required aria-required="true">
+        </div>
+        <div>
+          <label for="contact-email">Email <span class="required-marker" aria-hidden="true">*</span></label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required aria-required="true">
+        </div>
+        <div>
+          <label for="contact-subject">Subject</label>
+          <select id="contact-subject" name="subject">
+            <option value="general">General enquiry</option>
+            <option value="technical">Technical issue</option>
+            <option value="account">Account / login problem</option>
+          </select>
+        </div>
+        <div>
+          <label for="contact-message">Message <span class="required-marker" aria-hidden="true">*</span></label>
+          <textarea id="contact-message" name="message" rows="5" required aria-required="true"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Send message</button>
+      </form>
+    </div>
+
+    <section aria-labelledby="reach-heading" style="margin-top: 32px;">
+      <h2 id="reach-heading">Other ways to reach us</h2>
+      <address>
+        Student Affairs Office, Main Building, Room 104<br>
+        Email: <a href="mailto:support@studenthub.edu">support@studenthub.edu</a><br>
+        Phone: <a href="tel:+911234567890">+91 12345 67890</a>
+      </address>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

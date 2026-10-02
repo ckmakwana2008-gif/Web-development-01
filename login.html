@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — StudentHub</title>
+<meta name="description" content="Your StudentHub dashboard: notices, timetable, assignments and attendance at a glance.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">StudentHub</span>
+      <span class="brand-tag">Student Portal</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html">Log out</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li aria-current="page">Dashboard</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="container">
+    <h1>Welcome back, Asha</h1>
+    <p class="text-muted">B.Sc. Computer Science &middot; Semester 4 &middot; Enrollment No. 22CS0147</p>
+
+    <div class="alert alert-info" role="status">
+      2 new notices and 1 assignment are due this week.
+    </div>
+
+    <section aria-labelledby="quick-links-heading">
+      <h2 id="quick-links-heading">Quick links</h2>
+      <ul class="card-grid">
+        <li class="card">
+          <h3><a href="notices.html">Notices</a></h3>
+          <p>3 unread announcements from your department.</p>
+        </li>
+        <li class="card">
+          <h3><a href="timetable.html">Timetable</a></h3>
+          <p>Your next class is Database Systems at 11:00 AM.</p>
+        </li>
+        <li class="card">
+          <h3><a href="study-material.html">Study material</a></h3>
+          <p>New notes uploaded for Operating Systems.</p>
+        </li>
+        <li class="card">
+          <h3><a href="assignments.html">Assignments</a></h3>
+          <p>1 assignment due in 2 days.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="attendance-heading">
+      <h2 id="attendance-heading">Attendance summary</h2>
+      <table>
+        <caption>Attendance by subject, current semester</caption>
+        <thead>
+          <tr>
+            <th scope="col">Subject</th>
+            <th scope="col">Classes held</th>
+            <th scope="col">Attended</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Database Systems</th>
+            <td>32</td>
+            <td>29</td>
+            <td>91%</td>
+          </tr>
+          <tr>
+            <th scope="row">Operating Systems</th>
+            <td>30</td>
+            <td>24</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <th scope="row">Web Development Framework</th>
+            <td>28</td>
+            <td>27</td>
+            <td>96%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
