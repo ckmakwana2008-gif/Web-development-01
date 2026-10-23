@@ -1,0 +1,5 @@
+
+USE `studenthub_db`;
+ALTER TABLE `events` 
+ADD COLUMN IF NOT EXISTS `poster_image` VARCHAR(255) DEFAULT NULL AFTER `max_capacity`,
+ADD COLUMN IF NOT EXISTS `status` ENUM('UPCOMING', 'ONGOING', 'COMPLETED', 'CANCELLED') DEFAULT 'UPCOMING' AFTER `poster_image`;

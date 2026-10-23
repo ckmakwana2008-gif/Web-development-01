@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub — Events Directory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="container">
+  <h1>Campus Events Directory</h1>
+  <p>Explore upcoming workshops, competitions, seminars, and fests.</p>
+
+  <!-- Control Panel: Search, Filter, Sort -->
+  <div class="control-panel">
+    <div class="control-group">
+      <label for="search-input">Search Events</label>
+      <input type="text" id="search-input" placeholder="Search by title or description..." aria-label="Search events">
+    </div>
+
+    <div class="control-group">
+      <label for="category-filter">Category</label>
+      <select id="category-filter" aria-label="Filter by category">
+        <option value="All">All Categories</option>
+        <option value="Workshop">Workshop</option>
+        <option value="Competition">Competition</option>
+        <option value="Seminar">Seminar</option>
+        <option value="Sports">Sports</option>
+        <option value="Cultural">Cultural</option>
+        <option value="Placement">Placement</option>
+        <option value="Exhibition">Exhibition</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="sort-order">Sort By</label>
+      <select id="sort-order" aria-label="Sort events">
+        <option value="date-asc">Date (Earliest First)</option>
+        <option value="date-desc">Date (Latest First)</option>
+        <option value="title-asc">Title (A to Z)</option>
+        <option value="title-desc">Title (Z to A)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Status Banners (Loading / Error / Empty) -->
+  <div id="status-container" class="status-container" aria-live="polite"></div>
+
+  <!-- Dynamic Event Cards List -->
+  <ul id="events-grid" class="card-grid" aria-label="Events list"></ul>
+
+  <!-- Pagination Controls -->
+  <div id="pagination" class="pagination-container" aria-label="Pagination Navigation"></div>
+</main>
+
+<script src="event.js"></script>
+</body>
+</html>

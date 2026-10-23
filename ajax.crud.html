@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub - Asynchronous Event CRUD (Fetch API)</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #2563eb;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .status-toast {
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .status-toast.success { background-color: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .status-toast.error { background-color: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+  </style>
+</head>
+<body>
+
+<main class="container" style="margin-top:2rem;">
+  <h1>Asynchronous Event Management Dashboard (Fetch API)</h1>
+  <p>Perform complete Create, Read, Update, and Delete operations without full page refreshes.</p>
+
+  <div id="toast" class="status-toast"></div>
+
+  <section class="panel" style="margin-bottom:2rem;">
+    <h2 id="form-title">Add New Event</h2>
+    <form id="event-form">
+      <input type="hidden" id="event_id" name="event_id">
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div class="form-group">
+          <label for="title">Event Title *</label>
+          <input type="text" id="title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select id="category" required>
+            <option value="">-- Select --</option>
+            <option value="Technical">Technical</option>
+            <option value="Competition">Competition</option>
+            <option value="Academic">Academic</option>
+            <option value="Cultural">Cultural</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="event_date">Event Date & Time *</label>
+          <input type="datetime-local" id="event_date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location *</label>
+          <input type="text" id="location" required>
+        </div>
+
+        <div class="form-group">
+          <label for="max_capacity">Max Capacity *</label>
+          <input type="number" id="max_capacity" min="1" value="50" required>
+        </div>
+
+        <div class="form-group" id="status-group" style="display:none;">
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="UPCOMING">UPCOMING</option>
+            <option value="ONGOING">ONGOING</option>
+            <option value="COMPLETED">COMPLETED</option>
+            <option value="CANCELLED">CANCELLED</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; gap:1rem; align-items:center;">
+        <button type="submit" id="btn-submit" class="btn btn-primary">Save Event</button>
+        <button type="button" id="btn-cancel" class="btn btn-outline" style="display:none;" onclick="resetForm()">Cancel</button>
+        <span id="form-spinner" class="spinner" style="display:none;"></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+      <h2>Live Events Listing</h2>
+      <div>
+        <span id="list-spinner" class="spinner" style="display:none;"></span>
+        <button class="btn btn-outline btn-sm" onclick="fetchEvents()">Refresh List</button>
+      </div>
+    </div>
+
+    <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="background-color: #f8fafc;">
+          <th>ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="events-table-body">
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  const API_URL = 'api_events.php';
+
+  const eventForm = document.getElementById('event-form');
+  const formTitle = document.getElementById('form-title');
+  const btnSubmit = document.getElementById('btn-submit');
+  const btnCancel = document.getElementById('btn-cancel');
+  const formSpinner = document.getElementById('form-spinner');
+  const listSpinner = document.getElementById('list-spinner');
+  const toast = document.getElementById('toast');
+  const eventsTableBody = document.getElementById('events-table-body');
+  const statusGroup = document.getElementById('status-group');
+
+  document.addEventListener('DOMContentLoaded', fetchEvents);
+
+  function showToast(message, isSuccess = true) {
+    toast.className = `status-toast ${isSuccess ? 'success' : 'error'}`;
+    toast.textContent = message;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 4000);
+  }
+
+  async function fetchEvents() {
+    listSpinner.style.display = 'inline-block';
+    try {
+      const response = await fetch(API_URL);
+      const result = await response.json();
+
+      if (result.success) {
+        renderTable(result.data);
+      } else {
+        showToast(result.message || 'Failed to load events.', false);
+      }
+    } catch (err) {
+      showToast('Network error while fetching events.', false);
+      console.error(err);
+    } finally {
+      listSpinner.style.display = 'none';
+    }
+  }
+
+  function renderTable(events) {
+    eventsTableBody.innerHTML = '';
+    if (events.length === 0) {
+      eventsTableBody.innerHTML = '<tr><td colspan="8" style="text-align:center;">No events available.</td></tr>';
+      return;
+    }
+
+    events.forEach(ev => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${ev.event_id}</td>
+        <td><strong>${escapeHtml(ev.title)}</strong></td>
+        <td><span class="badge badge-category">${escapeHtml(ev.category)}</span></td>
+        <td>${new Date(ev.event_date).toLocaleString()}</td>
+        <td>${escapeHtml(ev.location)}</td>
+        <td>${ev.max_capacity}</td>
+        <td><strong>${ev.status}</strong></td>
+        <td>
+          <button class="btn btn-outline btn-sm" onclick="editEvent(${ev.event_id})">Edit</button>
+          <button class="btn btn-sm" style="background:#ef4444; color:white; border:none;" onclick="deleteEvent(${ev.event_id})">Delete</button>
+        </td>
+      `;
+      eventsTableBody.appendChild(tr);
+    });
+  }
+
+  eventForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formSpinner.style.display = 'inline-block';
+    btnSubmit.disabled = true;
+
+    const eventId = document.getElementById('event_id').value;
+    const isEdit = eventId !== '';
+
+    const payload = {
+      event_id: eventId ? parseInt(eventId) : undefined,
+      title: document.getElementById('title').value.trim(),
+      category: document.getElementById('category').value,
+      event_date: document.getElementById('event_date').value,
+      location: document.getElementById('location').value.trim(),
+      max_capacity: parseInt(document.getElementById('max_capacity').value),
+      status: isEdit ? document.getElementById('status').value : 'UPCOMING'
+    };
+
+    try {
+      const response = await fetch(API_URL, {
+        method: isEdit ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast(result.message, true);
+        resetForm();
+        fetchEvents();
+      } else {
+        showToast(result.message || 'Operation failed.', false);
+      }
+    } catch (err) {
+      showToast('Network error processing request.', false);
+    } finally {
+      formSpinner.style.display = 'none';
+      btnSubmit.disabled = false;
+    }
+  });
+
+  async function editEvent(id) {
+    try {
+      const response = await fetch(`${API_URL}?id=${id}`);
+      const result = await response.json();
+
+      if (result.success) {
+        const ev = result.data;
+        document.getElementById('event_id').value = ev.event_id;
+        document.getElementById('title').value = ev.title;
+        document.getElementById('category').value = ev.category;
+        document.getElementById('event_date').value = ev.event_date.replace(' ', 'T').substring(0, 16);
+        document.getElementById('location').value = ev.location;
+        document.getElementById('max_capacity').value = ev.max_capacity;
+        document.getElementById('status').value = ev.status;
+
+        formTitle.textContent = `Edit Event #${ev.event_id}`;
+        btnSubmit.textContent = 'Update Event';
+        btnCancel.style.display = 'inline-block';
+        statusGroup.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } catch (err) {
+      showToast('Could not load event data.', false);
+    }
+  }
+
+  async function deleteEvent(id) {
+    if (!confirm(`Are you sure you want to delete event #${id}?`)) return;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_id: id })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast(result.message, true);
+        fetchEvents();
+      } else {
+        showToast(result.message || 'Deletion failed.', false);
+      }
+    } catch (err) {
+      showToast('Network error during deletion.', false);
+    }
+  }
+
+  function resetForm() {
+    eventForm.reset();
+    document.getElementById('event_id').value = '';
+    formTitle.textContent = 'Add New Event';
+    btnSubmit.textContent = 'Save Event';
+    btnCancel.style.display = 'none';
+    statusGroup.style.display = 'none';
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, match => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[match]));
+  }
+</script>
+
+</body>
+</html>

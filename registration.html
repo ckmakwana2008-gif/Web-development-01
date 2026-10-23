@@ -1,136 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register — StudentHub</title>
-<meta name="description" content="Create a StudentHub account as a student or faculty member.">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub — Register</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to main content</a>
+<main class="container form-container">
+  <h1>Student Registration</h1>
+  <p>Create your StudentHub account to access academic resources.</p>
 
-<header class="site-header">
-  <div class="container">
-    <a class="brand" href="index.html">
-      <span class="brand-mark">StudentHub</span>
-      <span class="brand-tag">Student Portal</span>
-    </a>
-    <div class="header-actions">
-      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button>
-      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">☰ Menu</button>
+  <form id="registration-form" novalidate>
+    <!-- Full Name -->
+    <div class="form-group">
+      <label for="fullname">Full Name <span class="required">*</span></label>
+      <input type="text" id="fullname" name="fullname" required aria-describedby="fullname-error">
+      <span class="error-message" id="fullname-error" aria-live="polite"></span>
     </div>
-    <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html">Log in</a></li>
-        <li><a href="register.html" aria-current="page">Register</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <div class="container">
-    <ol>
-      <li><a href="index.html">Home</a></li>
-      <li aria-current="page">Register</li>
-    </ol>
-  </div>
-</nav>
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email Address <span class="required">*</span></label>
+      <input type="email" id="email" name="email" required aria-describedby="email-error">
+      <span class="error-message" id="email-error" aria-live="polite"></span>
+    </div>
 
-<main id="main-content">
-  <div class="container">
-    <h1>Create your account</h1>
-    <p>Register with your institute email address. Faculty accounts are verified by an administrator before activation.</p>
+    <!-- Mobile Number -->
+    <div class="form-group">
+      <label for="mobile">Mobile Number <span class="required">*</span></label>
+      <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" required aria-describedby="mobile-error">
+      <span class="error-message" id="mobile-error" aria-live="polite"></span>
+    </div>
 
-    <form class="form-grid form-wide" action="#" method="post" novalidate>
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password <span class="required">*</span></label>
+      <input type="password" id="password" name="password" required aria-describedby="password-error password-strength">
+      <div id="password-meter" class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
+      <span id="password-strength" class="strength-text"></span>
+      <span class="error-message" id="password-error" aria-live="polite"></span>
+    </div>
 
-      <fieldset>
-        <legend>Account details</legend>
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password <span class="required">*</span></label>
+      <input type="password" id="confirm-password" name="confirm-password" required aria-describedby="confirm-password-error">
+      <span class="error-message" id="confirm-password-error" aria-live="polite"></span>
+    </div>
 
-        <div class="form-row">
-          <div>
-            <label for="full-name">Full name <span class="required-marker" aria-hidden="true">*</span></label>
-            <input type="text" id="full-name" name="full-name" autocomplete="name" required aria-required="true">
-          </div>
+    <!-- Course Selection -->
+    <div class="form-group">
+      <label for="course">Select Course <span class="required">*</span></label>
+      <select id="course" name="course" required aria-describedby="course-error">
+        <option value="">-- Choose a Course --</option>
+        <option value="cs">B.Tech Computer Science</option>
+        <option value="it">B.Tech Information Technology</option>
+        <option value="ee">B.Tech Electrical Engineering</option>
+      </select>
+      <span class="error-message" id="course-error" aria-live="polite"></span>
+    </div>
 
-          <div>
-            <label for="email">Institute email <span class="required-marker" aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" autocomplete="email" required aria-required="true" aria-describedby="email-hint">
-            <p class="field-hint" id="email-hint">Use your official @studenthub.edu address.</p>
-          </div>
-        </div>
+    <!-- Academic Year -->
+    <div class="form-group">
+      <label for="year">Academic Year <span class="required">*</span></label>
+      <select id="year" name="year" required aria-describedby="year-error">
+        <option value="">-- Choose Year --</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+      <span class="error-message" id="year-error" aria-live="polite"></span>
+    </div>
 
-        <div class="form-row">
-          <div>
-            <label for="password">Password <span class="required-marker" aria-hidden="true">*</span></label>
-            <input type="password" id="password" name="password" autocomplete="new-password" required aria-required="true" aria-describedby="password-hint" minlength="8">
-            <p class="field-hint" id="password-hint">At least 8 characters.</p>
-          </div>
-
-          <div>
-            <label for="confirm-password">Confirm password <span class="required-marker" aria-hidden="true">*</span></label>
-            <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required aria-required="true">
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>You are registering as</legend>
-        <div class="radio-group" role="radiogroup" aria-required="true">
-          <label for="role-student">
-            <input type="radio" id="role-student" name="role" value="student" checked>
-            Student
-          </label>
-          <label for="role-faculty">
-            <input type="radio" id="role-faculty" name="role" value="faculty">
-            Faculty
-          </label>
-        </div>
-      </fieldset>
-
-      <div>
-        <label for="enrollment">Enrollment / Employee ID</label>
-        <input type="text" id="enrollment" name="enrollment" autocomplete="off">
+    <!-- Gender Radio Group -->
+    <fieldset class="form-group">
+      <legend>Gender <span class="required">*</span></legend>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="male" required> Male</label>
+        <label><input type="radio" name="gender" value="female"> Female</label>
+        <label><input type="radio" name="gender" value="other"> Other</label>
       </div>
+      <span class="error-message" id="gender-error" aria-live="polite"></span>
+    </fieldset>
 
-      <div class="checkbox-group">
-        <label for="terms">
-          <input type="checkbox" id="terms" name="terms" required aria-required="true">
-          I agree to the terms of use <span class="required-marker" aria-hidden="true">*</span>
-        </label>
-      </div>
+    <!-- Terms and Conditions -->
+    <div class="form-group checkbox-group">
+      <label for="terms">
+        <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+        I accept the Terms and Conditions <span class="required">*</span>
+      </label>
+      <span class="error-message" id="terms-error" aria-live="polite"></span>
+    </div>
 
-      <button type="submit" class="btn btn-dark">Create account</button>
-    </form>
-
-    <p>Already have an account? <a href="login.html">Log in here</a>.</p>
-  </div>
+    <button type="submit" class="btn btn-primary">Create Account</button>
+  </form>
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <nav class="footer-nav" aria-label="Footer">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </nav>
-      <p>Questions? <a href="contact.html">Get in touch</a>.</p>
-    </div>
-    <p class="footer-fine">&copy; 2026 StudentHub. Built as a semester-long academic project.</p>
-  </div>
-</footer>
-
-<script src="main.js"></script>
+<script src="reg.js"></script>
 </body>
 </html>
